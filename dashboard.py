@@ -24,8 +24,6 @@ else:
     except FileNotFoundError:
         st.warning("Error: The specified file was not found.Kindly Upload your file")
 
-df = df
-
 # Sidebar navigation
 page = st.sidebar.selectbox("Select a page", ["Home","Word Cloud"])
 
