@@ -5,6 +5,7 @@ import os
 import warnings
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
+import time
 
 
 warnings.filterwarnings('ignore')
@@ -21,6 +22,12 @@ if fl is not None:
     df = pd.read_csv(fl, encoding="ISO-8859-1")
 
     page = st.sidebar.selectbox("Select a page", ["Home","Word Cloud"])
+
+    # Flash success message for 5 seconds
+    success_message = st.empty()
+    success_message.success("File successfully uploaded!")
+    time.sleep(5)
+    success_message.empty()
 
     #Sidebar for Document Type
     st.sidebar.header("Choose your filter: ")
