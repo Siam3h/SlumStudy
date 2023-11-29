@@ -12,10 +12,30 @@ warnings.filterwarnings('ignore')
 st.markdown("<h2 style='text-align: center; padding-top: 1rem;'>Study of Studies</h2>", unsafe_allow_html=True)
 
 fl = st.file_uploader(":file_folder: Upload a file",type=(["csv"]))
+
+if fl is not None:
+    # Check if a file is uploaded
+    st.success("File successfully uploaded!")
+
+    # Read the CSV file
+    df = pd.read_csv(fl, encoding="ISO-8859-1")
+
+    # Display the DataFrame
+    st.dataframe(df)
+else:
+    st.warning("Please upload a CSV file.")
+
+
+
+
+
+
+
+
 #if fl is not None:
 #filename = fl.name
 #    st.write(filename)
-df = pd.read_csv(fl, encoding = "ISO-8859-1")
+#df = pd.read_csv(filename, encoding = "ISO-8859-1")
 #else:
 #    try:
 #        folder_path = ".\Slums_Sample.csv" 
