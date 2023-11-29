@@ -13,9 +13,9 @@ st.markdown("<h2 style='text-align: center; padding-top: 1rem;'>Study of Studies
 
 fl = st.file_uploader(":file_folder: Upload a file",type=(["csv"]))
 #if fl is not None:
-filename = fl.name
+#filename = fl.name
 #    st.write(filename)
-df = pd.read_csv(filename, encoding = "ISO-8859-1")
+df = pd.read_csv(fl, encoding = "ISO-8859-1")
 #else:
 #    try:
 #        folder_path = ".\Slums_Sample.csv" 
