@@ -12,17 +12,17 @@ warnings.filterwarnings('ignore')
 st.markdown("<h2 style='text-align: center; padding-top: 1rem;'>Study of Studies</h2>", unsafe_allow_html=True)
 
 fl = st.file_uploader(":file_folder: Upload a file",type=(["csv"]))
-if fl is not None:
-    filename = fl.name
-    st.write(filename)
-    df = pd.read_csv(filename, encoding = "ISO-8859-1")
-else:
-    try:
-        folder_path = ".\Slums_Sample.csv" 
-        os.chdir(folder_path)
-        df = pd.read_csv("Slums_Sample.csv",encoding = "ISO-8859-1" )
-    except FileNotFoundError:
-        st.warning("Error: The specified file was not found.Kindly Upload your file")
+#if fl is not None:
+filename = fl.name
+#    st.write(filename)
+df = pd.read_csv(filename, encoding = "ISO-8859-1")
+#else:
+#    try:
+#        folder_path = ".\Slums_Sample.csv" 
+ #       os.chdir(folder_path)
+ #       df = pd.read_csv("Slums_Sample.csv",encoding = "ISO-8859-1" )
+  #  except FileNotFoundError:
+   #     st.warning("Error: The specified file was not found.Kindly Upload your file")
 
 # Sidebar navigation
 page = st.sidebar.selectbox("Select a page", ["Home","Word Cloud"])
