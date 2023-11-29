@@ -92,6 +92,105 @@ if fl is not None:
         df11 = df10.copy()
     else:
         df11 = df10[df10["CITE 'UN-habitat 2003 STUDY ON SLUMS'"].isin(un_citation)]
+     
+    #Filter the data based on the DF.
+    if not doctype and not stats and not un_citation and not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not positionality and not categorization and not continent and not stats and not un_citation:
+        filtered_df = df
+
+    elif not doctype and not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not positionality and not continent and not stats and not un_citation:
+        filtered_df = df[df["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
+    elif not doctype and not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not categorization and not continent and not stats and not un_citation :
+        filtered_df = df[df["POSITIONALITY OF ARTICLE"].isin(positionality)]
+    elif not doctype and not applicableNom and not sectionAnalysed and not nationality and not positionality and not categorization and not continent and not stats and not un_citation :
+        filtered_df = df[df["YEAR OF PUBLICATION"].isin(yearofPub)]
+    elif not doctype and not applicableNom and not sectionAnalysed and not yearofPub and not positionality and not categorization and not continent and not stats and not un_citation :
+        filtered_df = df[df["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality)]
+    elif not doctype and not applicableNom and not nationality and not yearofPub and not positionality and not categorization and not continent and not stats and not un_citation :
+        filtered_df = df[df["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed)]
+    elif not doctype and not sectionAnalysed and not nationality and not yearofPub and not positionality and not categorization and not continent and not stats and not un_citation :
+        filtered_df = df[df["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom)]
+    elif not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not positionality and not categorization and not continent and not stats and not un_citation :
+        filtered_df = df[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype)]
+    elif not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not positionality and not categorization and not stats and not un_citation :
+        filtered_df = df[df["CONTINENT OF STUDY"].isin(continent)]
+    elif not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not positionality and not categorization and not stats:
+        filtered_df = df[df["CITE 'UN-habitat 2003 STUDY ON SLUMS'"].isin(un_citation)]
+    elif not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not positionality and not categorization and not un_citation:
+        filtered_df = df[df["USE OF STATISTICS"].isin(stats)]
+
+    elif doctype and applicableNom:
+        filtered_df = df3[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype) & df3["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom)]
+    elif doctype and sectionAnalysed:
+        filtered_df = df3[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype) & df3["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed)]
+    elif doctype and nationality:
+        filtered_df = df3[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype) & df3["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality)]
+    elif doctype and yearofPub:
+        filtered_df = df3[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype) & df3["YEAR OF PUBLICATION"].isin(yearofPub)]
+    elif doctype and positionality:
+        filtered_df = df3[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype) & df3["POSITIONALITY OF ARTICLE"].isin(positionality)]
+    elif doctype and categorization:
+        filtered_df = df3[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype) & df3["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
+    elif doctype and continent:
+        filtered_df = df3[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype) & df3["CONTINENT OF STUDY"].isin(continent)]
+
+    elif applicableNom and nationality:
+        filtered_df = df3[df["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom) & df3["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality)]
+    elif applicableNom and sectionAnalysed:
+        filtered_df = df3[df["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom) & df3["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed)]
+    elif applicableNom and yearofPub:
+        filtered_df = df3[df["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom) & df3["YEAR OF PUBLICATION"].isin(yearofPub)]
+    elif applicableNom and positionality:
+        filtered_df = df3[df["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom) & df3["POSITIONALITY OF ARTICLE"].isin(positionality)]
+    elif applicableNom and categorization:
+        filtered_df = df3[df["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom) & df3["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
+    elif applicableNom and continent:
+        filtered_df = df3[df["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom) & df3["CONTINENT OF STUDY"].isin(continent)]
+
+    elif nationality and sectionAnalysed:
+        filtered_df = df3[df["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality) & df3["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed)]
+    elif nationality and yearofPub:
+        filtered_df = df3[df["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality) & df3["YEAR OF PUBLICATION"].isin(yearofPub)]
+    elif nationality and positionality:
+        filtered_df = df3[df["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality) & df3["POSITIONALITY OF ARTICLE"].isin(positionality)]
+    elif nationality and categorization:
+        filtered_df = df3[df["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality) & df3["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
+    elif nationality and continent:
+        filtered_df = df3[df["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality) & df3["CONTINENT OF STUDY"].isin(continent)]
+
+    elif sectionAnalysed and yearofPub:
+        filtered_df = df3[df["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed) & df3["YEAR OF PUBLICATION"].isin(yearofPub)]
+    elif sectionAnalysed and positionality:
+        filtered_df = df3[df["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed) & df3["POSITIONALITY OF ARTICLE"].isin(positionality)]
+    elif sectionAnalysed and categorization:
+        filtered_df = df3[df["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed) & df3["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
+    elif sectionAnalysed and continent:
+        filtered_df = df3[df["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed) & df3["CONTINENT OF STUDY"].isin(continent)]
+
+    elif yearofPub and positionality:
+        filtered_df = df3[df["YEAR OF PUBLICATION"].isin(yearofPub) & df3["POSITIONALITY OF ARTICLE"].isin(positionality)]
+    elif yearofPub and categorization:
+        filtered_df = df3[df["YEAR OF PUBLICATION"].isin(yearofPub) & df3["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
+    elif yearofPub and continent:
+        filtered_df = df3[df["YEAR OF PUBLICATION"].isin(yearofPub) & df3["CONTINENT OF STUDY"].isin(continent)]
+
+    elif positionality and categorization:
+        filtered_df = df3[df["POSITIONALITY OF ARTICLE"].isin(positionality) & df3["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
+    elif positionality and continent:
+        filtered_df = df3[df["POSITIONALITY OF ARTICLE"].isin(positionality) & df3["CONTINENT OF STUDY"].isin(continent)]
+
+    elif categorization and continent:
+        filtered_df = df3[df["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization) & df3["CONTINENT OF STUDY"].isin(continent)]
+
+    else:
+        filtered_df = df3[df3["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype) &
+                        df3["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality) & 
+                        df3["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom) & 
+                        df3["CONTINENT OF STUDY"].isin(continent) & 
+                        df3["POSITIONALITY OF ARTICLE"].isin(positionality)  & 
+                        df3["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed) & 
+                        df3["YEAR OF PUBLICATION"].isin(yearofPub) & 
+                        df3["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
+            
 else:
     st.warning("Please upload a CSV file.")
 
@@ -109,105 +208,6 @@ else:
 
 # Sidebar navigation
 page = st.sidebar.selectbox("Select a page", ["Home","Word Cloud"])
-
-
-#Filter the data based on the DF.
-if not doctype and not stats and not un_citation and not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not positionality and not categorization and not continent and not stats and not un_citation:
-    filtered_df = df
-
-elif not doctype and not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not positionality and not continent and not stats and not un_citation:
-    filtered_df = df[df["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
-elif not doctype and not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not categorization and not continent and not stats and not un_citation :
-    filtered_df = df[df["POSITIONALITY OF ARTICLE"].isin(positionality)]
-elif not doctype and not applicableNom and not sectionAnalysed and not nationality and not positionality and not categorization and not continent and not stats and not un_citation :
-    filtered_df = df[df["YEAR OF PUBLICATION"].isin(yearofPub)]
-elif not doctype and not applicableNom and not sectionAnalysed and not yearofPub and not positionality and not categorization and not continent and not stats and not un_citation :
-    filtered_df = df[df["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality)]
-elif not doctype and not applicableNom and not nationality and not yearofPub and not positionality and not categorization and not continent and not stats and not un_citation :
-    filtered_df = df[df["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed)]
-elif not doctype and not sectionAnalysed and not nationality and not yearofPub and not positionality and not categorization and not continent and not stats and not un_citation :
-    filtered_df = df[df["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom)]
-elif not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not positionality and not categorization and not continent and not stats and not un_citation :
-    filtered_df = df[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype)]
-elif not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not positionality and not categorization and not stats and not un_citation :
-    filtered_df = df[df["CONTINENT OF STUDY"].isin(continent)]
-elif not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not positionality and not categorization and not stats:
-    filtered_df = df[df["CITE 'UN-habitat 2003 STUDY ON SLUMS'"].isin(un_citation)]
-elif not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not positionality and not categorization and not un_citation:
-    filtered_df = df[df["USE OF STATISTICS"].isin(stats)]
-
-elif doctype and applicableNom:
-    filtered_df = df3[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype) & df3["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom)]
-elif doctype and sectionAnalysed:
-     filtered_df = df3[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype) & df3["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed)]
-elif doctype and nationality:
-    filtered_df = df3[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype) & df3["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality)]
-elif doctype and yearofPub:
-    filtered_df = df3[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype) & df3["YEAR OF PUBLICATION"].isin(yearofPub)]
-elif doctype and positionality:
-    filtered_df = df3[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype) & df3["POSITIONALITY OF ARTICLE"].isin(positionality)]
-elif doctype and categorization:
-    filtered_df = df3[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype) & df3["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
-elif doctype and continent:
-    filtered_df = df3[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype) & df3["CONTINENT OF STUDY"].isin(continent)]
-
-elif applicableNom and nationality:
-    filtered_df = df3[df["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom) & df3["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality)]
-elif applicableNom and sectionAnalysed:
-    filtered_df = df3[df["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom) & df3["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed)]
-elif applicableNom and yearofPub:
-    filtered_df = df3[df["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom) & df3["YEAR OF PUBLICATION"].isin(yearofPub)]
-elif applicableNom and positionality:
-    filtered_df = df3[df["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom) & df3["POSITIONALITY OF ARTICLE"].isin(positionality)]
-elif applicableNom and categorization:
-    filtered_df = df3[df["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom) & df3["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
-elif applicableNom and continent:
-    filtered_df = df3[df["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom) & df3["CONTINENT OF STUDY"].isin(continent)]
-
-elif nationality and sectionAnalysed:
-    filtered_df = df3[df["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality) & df3["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed)]
-elif nationality and yearofPub:
-    filtered_df = df3[df["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality) & df3["YEAR OF PUBLICATION"].isin(yearofPub)]
-elif nationality and positionality:
-    filtered_df = df3[df["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality) & df3["POSITIONALITY OF ARTICLE"].isin(positionality)]
-elif nationality and categorization:
-    filtered_df = df3[df["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality) & df3["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
-elif nationality and continent:
-    filtered_df = df3[df["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality) & df3["CONTINENT OF STUDY"].isin(continent)]
-
-elif sectionAnalysed and yearofPub:
-    filtered_df = df3[df["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed) & df3["YEAR OF PUBLICATION"].isin(yearofPub)]
-elif sectionAnalysed and positionality:
-    filtered_df = df3[df["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed) & df3["POSITIONALITY OF ARTICLE"].isin(positionality)]
-elif sectionAnalysed and categorization:
-    filtered_df = df3[df["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed) & df3["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
-elif sectionAnalysed and continent:
-    filtered_df = df3[df["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed) & df3["CONTINENT OF STUDY"].isin(continent)]
-
-elif yearofPub and positionality:
-    filtered_df = df3[df["YEAR OF PUBLICATION"].isin(yearofPub) & df3["POSITIONALITY OF ARTICLE"].isin(positionality)]
-elif yearofPub and categorization:
-    filtered_df = df3[df["YEAR OF PUBLICATION"].isin(yearofPub) & df3["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
-elif yearofPub and continent:
-    filtered_df = df3[df["YEAR OF PUBLICATION"].isin(yearofPub) & df3["CONTINENT OF STUDY"].isin(continent)]
-
-elif positionality and categorization:
-    filtered_df = df3[df["POSITIONALITY OF ARTICLE"].isin(positionality) & df3["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
-elif positionality and continent:
-    filtered_df = df3[df["POSITIONALITY OF ARTICLE"].isin(positionality) & df3["CONTINENT OF STUDY"].isin(continent)]
-
-elif categorization and continent:
-    filtered_df = df3[df["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization) & df3["CONTINENT OF STUDY"].isin(continent)]
-
-else:
-    filtered_df = df3[df3["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype) &
-                       df3["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality) & 
-                       df3["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom) & 
-                       df3["CONTINENT OF STUDY"].isin(continent) & 
-                       df3["POSITIONALITY OF ARTICLE"].isin(positionality)  & 
-                       df3["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed) & 
-                       df3["YEAR OF PUBLICATION"].isin(yearofPub) & 
-                       df3["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
 
 #Analysis Logic
 
