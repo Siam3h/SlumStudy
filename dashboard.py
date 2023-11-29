@@ -20,8 +20,6 @@ if fl is not None:
     # Read the CSV file
     df = pd.read_csv(fl, encoding="ISO-8859-1")
 
-    # Display the DataFrame
-    st.dataframe(df)
     #Sidebar for Document Type
     st.sidebar.header("Choose your filter: ")
     doctype = st.sidebar.multiselect("Document Type", df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].unique())
@@ -351,19 +349,4 @@ if fl is not None:
 else:
     st.warning("Please upload a CSV file.")
 
-#if fl is not None:
-#filename = fl.name
-#    st.write(filename)
-#df = pd.read_csv(filename, encoding = "ISO-8859-1")
-#else:
-#    try:
-#        folder_path = ".\Slums_Sample.csv" 
- #       os.chdir(folder_path)
- #       df = pd.read_csv("Slums_Sample.csv",encoding = "ISO-8859-1" )
-  #  except FileNotFoundError:
-   #     st.warning("Error: The specified file was not found.Kindly Upload your file")
 
-# Sidebar navigation
-page = st.sidebar.selectbox("Select a page", ["Home","Word Cloud"])
-
-#Analysis Logic
