@@ -18,7 +18,7 @@ if fl is not None:
     df = pd.read_csv(filename, encoding = "ISO-8859-1")
 else:
     try:
-        folder_path = r"C:\Users\ADMIN\Desktop\opt\Internship" 
+        folder_path = r".\Slums_Sample.csv" 
         os.chdir(folder_path)
         df = pd.read_csv("Slums_Sample.csv",encoding = "ISO-8859-1" )
     except FileNotFoundError:
