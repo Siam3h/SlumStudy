@@ -17,9 +17,13 @@ if fl is not None:
     st.write(filename)
     df = pd.read_csv(filename, encoding = "ISO-8859-1")
 else:
-    folder_path = r"C:\Users\ADMIN\Desktop\opt\Internship" 
-    os.chdir(folder_path)
-    df = pd.read_csv("Slums_Sample.csv",encoding = "ISO-8859-1" )
+    try:
+        folder_path = r"C:\Users\ADMIN\Desktop\opt\Internship" 
+        os.chdir(folder_path)
+        df = pd.read_csv("Slums_Sample.csv",encoding = "ISO-8859-1" )
+    except FileNotFoundError:
+        st.warning("Error: The specified file was not found.Kindly Upload your file")
+    
 
 # Sidebar navigation
 page = st.sidebar.selectbox("Select a page", ["Home","Word Cloud"])
