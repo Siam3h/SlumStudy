@@ -11,11 +11,12 @@ warnings.filterwarnings('ignore')
 
 st.markdown("<h2 style='text-align: center; padding-top: 1rem;'>Study of Studies</h2>", unsafe_allow_html=True)
 
-fl = st.file_uploader(":file_folder: Upload a file",type=(["csv","txt","xlsx","xls"]))
+fl = st.file_uploader(":file_folder: Upload a file",type=(["csv"]))
 if fl is not None:
     filename = fl.name
     st.write(filename)
     df = pd.read_csv(filename, encoding = "ISO-8859-1")
+    pass
 else:
     try:
         folder_path = r".\Slums_Sample.csv" 
