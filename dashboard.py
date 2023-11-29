@@ -20,6 +20,8 @@ if fl is not None:
     # Read the CSV file
     df = pd.read_csv(fl, encoding="ISO-8859-1")
 
+    page = st.sidebar.selectbox("Select a page", ["Home","Word Cloud"])
+
     #Sidebar for Document Type
     st.sidebar.header("Choose your filter: ")
     doctype = st.sidebar.multiselect("Document Type", df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].unique())
@@ -188,8 +190,7 @@ if fl is not None:
                         df3["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed) & 
                         df3["YEAR OF PUBLICATION"].isin(yearofPub) & 
                             df3["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
-        
-    page = st.sidebar.selectbox("Select a page", ["Home","Word Cloud"])
+
     if page == "Home":
         
         st.markdown("<p style='text-align: center; padding: 1rem; color: Green;'>This is the home page. Use the sidebar to navigate between pages.</p>", unsafe_allow_html=True)
