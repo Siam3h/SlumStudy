@@ -15,9 +15,7 @@ st.markdown("<h2 style='text-align: center; padding-top: 1rem;'>Study of Studies
 fl = st.file_uploader(":file_folder: Upload a file",type=(["csv"]))
 
 if fl is not None:
-    # Check if a file is uploaded
-    st.success("File successfully uploaded!")
-
+    
     # Read the CSV file
     df = pd.read_csv(fl, encoding="ISO-8859-1")
 
