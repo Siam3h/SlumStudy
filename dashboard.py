@@ -22,15 +22,15 @@ if fl is not None:
 
     # Display the DataFrame
     st.dataframe(df)
+    #Sidebar for Document Type
+    st.sidebar.header("Choose your filter: ")
+    doctype = st.sidebar.multiselect("Document Type", df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].unique())
+    if not doctype:
+        df2 = df.copy()
+    else:
+        df2 = df[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype)]
 else:
     st.warning("Please upload a CSV file.")
-
-
-
-
-
-
-
 
 #if fl is not None:
 #filename = fl.name
@@ -47,13 +47,7 @@ else:
 # Sidebar navigation
 page = st.sidebar.selectbox("Select a page", ["Home","Word Cloud"])
 
-#Sidebar for Document Type
-st.sidebar.header("Choose your filter: ")
-doctype = st.sidebar.multiselect("Document Type", df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].unique())
-if not doctype:
-    df2 = df.copy()
-else:
-    df2 = df[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype)]
+
 
 #sidebar for Applicable Nomenclature
 applicableNom = st.sidebar.multiselect("Applicable Nomenclature",df2["APPLICABLE NOMENCLATURE(KEY NAME USED)"].unique())
