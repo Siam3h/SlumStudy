@@ -16,10 +16,9 @@ if fl is not None:
     filename = fl.name
     st.write(filename)
     df = pd.read_csv(filename, encoding = "ISO-8859-1")
-    pass
 else:
     try:
-        folder_path = r".\Slums_Sample.csv" 
+        folder_path = ".\Slums_Sample.csv" 
         os.chdir(folder_path)
         df = pd.read_csv("Slums_Sample.csv",encoding = "ISO-8859-1" )
     except FileNotFoundError:
