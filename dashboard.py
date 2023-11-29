@@ -29,6 +29,69 @@ if fl is not None:
         df2 = df.copy()
     else:
         df2 = df[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype)]
+
+    #sidebar for Applicable Nomenclature
+    applicableNom = st.sidebar.multiselect("Applicable Nomenclature",df2["APPLICABLE NOMENCLATURE(KEY NAME USED)"].unique())
+    if not applicableNom:
+        df3 = df2.copy()
+    else:
+        df3 = df2[df2["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom)]
+
+    #sidebar for Section of Article Analysed
+    sectionAnalysed = st.sidebar.multiselect("Section of Article Analysed", df3["SECTION OF THE ARTICLE ANALYSED"].unique())
+    if not sectionAnalysed:
+        df4 = df3.copy()
+    else:
+        df4=df3[df3["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed)]
+
+    #sidebar for Nationality of Author
+    nationality = st.sidebar.multiselect("Nationality of Author", df4["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].unique())
+    if not nationality:
+        df5 = df4.copy()
+    else:
+        df5 = df4[df4["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality)]
+
+    #sidebar for Year of Publication
+    yearofPub = st.sidebar.multiselect("Year of Publication", df5["YEAR OF PUBLICATION"].unique())
+    if not yearofPub:
+        df6 = df5.copy()
+    else:
+        df6 = df5[df5["YEAR OF PUBLICATION"].isin(yearofPub)]
+
+    #sidebar for Positionality of Articles
+    positionality = st.sidebar.multiselect("Positionality of Article", df6["POSITIONALITY OF ARTICLE"].unique())
+    if not positionality:
+        df7 = df6.copy()
+    else:
+        df7 = df6[df6["POSITIONALITY OF ARTICLE"].isin(positionality)]
+
+    #sidebar for Categorization of Publication
+    categorization = st.sidebar.multiselect("Categorization of Publication", df7["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].unique())
+    if not categorization:
+        df8 = df7.copy()
+    else:
+        df8 = df7[df7["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
+
+    #sidebar for Continent of Study
+    continent = st.sidebar.multiselect("Continent of Study", df8["CONTINENT OF STUDY"].unique())
+    if not continent:
+        df9 = df8.copy()
+    else:
+        df9 = df8[df8["CONTINENT OF STUDY"].isin(continent)]
+
+    #sidebar for Use of Statistics
+    stats = st.sidebar.multiselect("Use of Statistics", df9["USE OF STATISTICS"].unique())
+    if not stats:
+        df10 = df9.copy()
+    else:
+        df10 = df9[df9["USE OF STATISTICS"].isin(stats)]
+
+    #sidebar for CITE 'UN-habitat 2003 STUDY ON SLUMS'
+    un_citation = st.sidebar.multiselect("UN-Habitat Citation", df10["CITE 'UN-habitat 2003 STUDY ON SLUMS'"].unique())
+    if not un_citation:
+        df11 = df10.copy()
+    else:
+        df11 = df10[df10["CITE 'UN-habitat 2003 STUDY ON SLUMS'"].isin(un_citation)]
 else:
     st.warning("Please upload a CSV file.")
 
@@ -46,71 +109,6 @@ else:
 
 # Sidebar navigation
 page = st.sidebar.selectbox("Select a page", ["Home","Word Cloud"])
-
-
-
-#sidebar for Applicable Nomenclature
-applicableNom = st.sidebar.multiselect("Applicable Nomenclature",df2["APPLICABLE NOMENCLATURE(KEY NAME USED)"].unique())
-if not applicableNom:
-    df3 = df2.copy()
-else:
-    df3 = df2[df2["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom)]
-
-#sidebar for Section of Article Analysed
-sectionAnalysed = st.sidebar.multiselect("Section of Article Analysed", df3["SECTION OF THE ARTICLE ANALYSED"].unique())
-if not sectionAnalysed:
-    df4 = df3.copy()
-else:
-    df4=df3[df3["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed)]
-
-#sidebar for Nationality of Author
-nationality = st.sidebar.multiselect("Nationality of Author", df4["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].unique())
-if not nationality:
-    df5 = df4.copy()
-else:
-    df5 = df4[df4["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality)]
-
-#sidebar for Year of Publication
-yearofPub = st.sidebar.multiselect("Year of Publication", df5["YEAR OF PUBLICATION"].unique())
-if not yearofPub:
-    df6 = df5.copy()
-else:
-    df6 = df5[df5["YEAR OF PUBLICATION"].isin(yearofPub)]
-
-#sidebar for Positionality of Articles
-positionality = st.sidebar.multiselect("Positionality of Article", df6["POSITIONALITY OF ARTICLE"].unique())
-if not positionality:
-    df7 = df6.copy()
-else:
-    df7 = df6[df6["POSITIONALITY OF ARTICLE"].isin(positionality)]
-
-#sidebar for Categorization of Publication
-categorization = st.sidebar.multiselect("Categorization of Publication", df7["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].unique())
-if not categorization:
-    df8 = df7.copy()
-else:
-    df8 = df7[df7["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
-
-#sidebar for Continent of Study
-continent = st.sidebar.multiselect("Continent of Study", df8["CONTINENT OF STUDY"].unique())
-if not continent:
-    df9 = df8.copy()
-else:
-    df9 = df8[df8["CONTINENT OF STUDY"].isin(continent)]
-
-#sidebar for Use of Statistics
-stats = st.sidebar.multiselect("Use of Statistics", df9["USE OF STATISTICS"].unique())
-if not stats:
-    df10 = df9.copy()
-else:
-    df10 = df9[df9["USE OF STATISTICS"].isin(stats)]
-
-#sidebar for CITE 'UN-habitat 2003 STUDY ON SLUMS'
-un_citation = st.sidebar.multiselect("UN-Habitat Citation", df10["CITE 'UN-habitat 2003 STUDY ON SLUMS'"].unique())
-if not un_citation:
-    df11 = df10.copy()
-else:
-    df11 = df10[df10["CITE 'UN-habitat 2003 STUDY ON SLUMS'"].isin(un_citation)]
 
 
 #Filter the data based on the DF.
