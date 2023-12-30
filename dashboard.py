@@ -1,7 +1,6 @@
 import streamlit as st
 import plotly.express as px
 import pandas as pd 
-import os
 import warnings
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
@@ -24,16 +23,18 @@ if fl is not None:
     # Flash success message for 5 seconds
     success_message = st.empty()
     success_message.success("File successfully uploaded!")
-    time.sleep(5)
+    time.sleep(3)
     success_message.empty()
 
     #Sidebar for Document Type
     st.sidebar.header("Choose your filter: ")
+
     doctype = st.sidebar.multiselect("Document Type", df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].unique())
     if not doctype:
         df2 = df.copy()
     else:
         df2 = df[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype)]
+
 
     #sidebar for Applicable Nomenclature
     applicableNom = st.sidebar.multiselect("Applicable Nomenclature",df2["APPLICABLE NOMENCLATURE(KEY NAME USED)"].unique())
@@ -198,7 +199,7 @@ if fl is not None:
 
     if page == "Home":
         
-        st.markdown("<p style='text-align: center; padding: 1rem; color: Green;'>This is the home page. Use the sidebar to navigate between pages.</p>", unsafe_allow_html=True)
+        st.markdown("<p style='text-align: center; padding: 1rem; color: Green;'>This is the home page.<br/> Use the sidebar to navigate between pages.</p>", unsafe_allow_html=True)
 
         ## Check if the filtered DataFrame is not empty before proceeding with visualizations
         if not filtered_df.empty:
@@ -228,7 +229,7 @@ if fl is not None:
             fig3 = px.line(df['YEAR OF PUBLICATION'].value_counts().sort_index(), labels={'x': 'Year of Publication', 'y': 'Count'},
                         title='Year of Publication Distribution', markers=True)
             
-            fig3.update_layout(height=600, width=550 )
+            fig3.update_layout(height=600, width=500 )
             fig3.update_layout(margin=dict(l=20, r=30))
             fig3.update_layout(title=dict(x=0.5, y=1, xanchor='center', yanchor='top'))
 
