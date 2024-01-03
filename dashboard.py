@@ -79,46 +79,44 @@ if fl is not None:
         df8 = df7[df7["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
 
     #sidebar for Continent of Study
-    continent = st.sidebar.multiselect("Continent of Study", df8["CONTINENT OF STUDY"].unique())
-    if not continent:
-        df9 = df8.copy()
-    else:
-        df9 = df8[df8["CONTINENT OF STUDY"].isin(continent)]
+    #continent = st.sidebar.multiselect("Continent of Study", df8["CONTINENT OF STUDY"].unique())
+    #if not continent:
+     #   df9 = df8.copy()
+    #else:
+     #   df9 = df8[df8["CONTINENT OF STUDY"].isin(continent)]
 
     #sidebar for Use of Statistics
-    stats = st.sidebar.multiselect("Use of Statistics", df9["USE OF STATISTICS"].unique())
+    stats = st.sidebar.multiselect("Use of Statistics", df8["USE OF STATISTICS"].unique())
     if not stats:
-        df10 = df9.copy()
+        df9 = df8.copy()
     else:
-        df10 = df9[df9["USE OF STATISTICS"].isin(stats)]
+        df9 = df8[df8["USE OF STATISTICS"].isin(stats)]
 
     #sidebar for CITE 'UN-habitat 2003 STUDY ON SLUMS'
-    un_citation = st.sidebar.multiselect("UN-Habitat Citation", df10["CITE 'UN-habitat 2003 STUDY ON SLUMS'"].unique())
+    un_citation = st.sidebar.multiselect("UN-Habitat Citation", df9["CITE 'UN-habitat 2003 STUDY ON SLUMS'"].unique())
     if not un_citation:
-        df11 = df10.copy()
+        df10 = df9.copy()
     else:
-        df11 = df10[df10["CITE 'UN-habitat 2003 STUDY ON SLUMS'"].isin(un_citation)]
+        df10 = df9[df9["CITE 'UN-habitat 2003 STUDY ON SLUMS'"].isin(un_citation)]
      
     #Filter the data based on the DF.
-    if not doctype and not stats and not un_citation and not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not positionality and not categorization and not continent and not stats and not un_citation:
+    if not doctype and not stats and not un_citation and not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not positionality and not categorization and not stats and not un_citation:
         filtered_df = df
 
-    elif not doctype and not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not positionality and not continent and not stats and not un_citation:
+    elif not doctype and not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not positionality  and not stats and not un_citation:
         filtered_df = df[df["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
-    elif not doctype and not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not categorization and not continent and not stats and not un_citation :
+    elif not doctype and not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not categorization  and not stats and not un_citation :
         filtered_df = df[df["POSITIONALITY OF ARTICLE"].isin(positionality)]
-    elif not doctype and not applicableNom and not sectionAnalysed and not nationality and not positionality and not categorization and not continent and not stats and not un_citation :
+    elif not doctype and not applicableNom and not sectionAnalysed and not nationality and not positionality and not categorization  and not stats and not un_citation :
         filtered_df = df[df["YEAR OF PUBLICATION"].isin(yearofPub)]
-    elif not doctype and not applicableNom and not sectionAnalysed and not yearofPub and not positionality and not categorization and not continent and not stats and not un_citation :
+    elif not doctype and not applicableNom and not sectionAnalysed and not yearofPub and not positionality and not categorization  and not stats and not un_citation :
         filtered_df = df[df["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality)]
-    elif not doctype and not applicableNom and not nationality and not yearofPub and not positionality and not categorization and not continent and not stats and not un_citation :
+    elif not doctype and not applicableNom and not nationality and not yearofPub and not positionality and not categorization  and not stats and not un_citation :
         filtered_df = df[df["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed)]
-    elif not doctype and not sectionAnalysed and not nationality and not yearofPub and not positionality and not categorization and not continent and not stats and not un_citation :
+    elif not doctype and not sectionAnalysed and not nationality and not yearofPub and not positionality and not categorization  and not stats and not un_citation :
         filtered_df = df[df["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom)]
-    elif not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not positionality and not categorization and not continent and not stats and not un_citation :
+    elif not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not positionality and not categorization  and not stats and not un_citation :
         filtered_df = df[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype)]
-    elif not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not positionality and not categorization and not stats and not un_citation :
-        filtered_df = df[df["CONTINENT OF STUDY"].isin(continent)]
     elif not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not positionality and not categorization and not stats:
         filtered_df = df[df["CITE 'UN-habitat 2003 STUDY ON SLUMS'"].isin(un_citation)]
     elif not applicableNom and not sectionAnalysed and not nationality and not yearofPub and not positionality and not categorization and not un_citation:
@@ -136,8 +134,6 @@ if fl is not None:
         filtered_df = df3[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype) & df3["POSITIONALITY OF ARTICLE"].isin(positionality)]
     elif doctype and categorization:
         filtered_df = df3[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype) & df3["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
-    elif doctype and continent:
-        filtered_df = df3[df["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype) & df3["CONTINENT OF STUDY"].isin(continent)]
 
     elif applicableNom and nationality:
         filtered_df = df3[df["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom) & df3["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality)]
@@ -149,8 +145,7 @@ if fl is not None:
         filtered_df = df3[df["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom) & df3["POSITIONALITY OF ARTICLE"].isin(positionality)]
     elif applicableNom and categorization:
         filtered_df = df3[df["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom) & df3["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
-    elif applicableNom and continent:
-        filtered_df = df3[df["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom) & df3["CONTINENT OF STUDY"].isin(continent)]
+    
 
     elif nationality and sectionAnalysed:
         filtered_df = df3[df["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality) & df3["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed)]
@@ -160,8 +155,7 @@ if fl is not None:
         filtered_df = df3[df["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality) & df3["POSITIONALITY OF ARTICLE"].isin(positionality)]
     elif nationality and categorization:
         filtered_df = df3[df["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality) & df3["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
-    elif nationality and continent:
-        filtered_df = df3[df["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality) & df3["CONTINENT OF STUDY"].isin(continent)]
+
 
     elif sectionAnalysed and yearofPub:
         filtered_df = df3[df["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed) & df3["YEAR OF PUBLICATION"].isin(yearofPub)]
@@ -169,29 +163,25 @@ if fl is not None:
         filtered_df = df3[df["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed) & df3["POSITIONALITY OF ARTICLE"].isin(positionality)]
     elif sectionAnalysed and categorization:
         filtered_df = df3[df["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed) & df3["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
-    elif sectionAnalysed and continent:
-        filtered_df = df3[df["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed) & df3["CONTINENT OF STUDY"].isin(continent)]
+
 
     elif yearofPub and positionality:
         filtered_df = df3[df["YEAR OF PUBLICATION"].isin(yearofPub) & df3["POSITIONALITY OF ARTICLE"].isin(positionality)]
     elif yearofPub and categorization:
         filtered_df = df3[df["YEAR OF PUBLICATION"].isin(yearofPub) & df3["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
-    elif yearofPub and continent:
-        filtered_df = df3[df["YEAR OF PUBLICATION"].isin(yearofPub) & df3["CONTINENT OF STUDY"].isin(continent)]
+
 
     elif positionality and categorization:
         filtered_df = df3[df["POSITIONALITY OF ARTICLE"].isin(positionality) & df3["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization)]
-    elif positionality and continent:
-        filtered_df = df3[df["POSITIONALITY OF ARTICLE"].isin(positionality) & df3["CONTINENT OF STUDY"].isin(continent)]
+    
+    elif positionality and categorization and doctype:
+        filtered_df = df3[df["POSITIONALITY OF ARTICLE"].isin(positionality) & df3["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization) & df3["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype)]
 
-    elif categorization and continent:
-        filtered_df = df3[df["CATEGORISATION OF PUBLICATION( descriptive, diagnostic(identify problems), Prescriptive, theoretical)"].isin(categorization) & df3["CONTINENT OF STUDY"].isin(continent)]
 
     else:
         filtered_df = df3[df3["DOCUMENT TYPE (book, Journal article, Report, Statutes, Newspaper)"].isin(doctype) &
                         df3["NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR"].isin(nationality) & 
                         df3["APPLICABLE NOMENCLATURE(KEY NAME USED)"].isin(applicableNom) & 
-                        df3["CONTINENT OF STUDY"].isin(continent) & 
                         df3["POSITIONALITY OF ARTICLE"].isin(positionality)  & 
                         df3["SECTION OF THE ARTICLE ANALYSED"].isin(sectionAnalysed) & 
                         df3["YEAR OF PUBLICATION"].isin(yearofPub) & 
@@ -229,7 +219,7 @@ if fl is not None:
             fig3 = px.line(df['YEAR OF PUBLICATION'].value_counts().sort_index(), labels={'x': 'Year of Publication', 'y': 'Count'},
                         title='Year of Publication Distribution', markers=True)
             
-            fig3.update_layout(height=600, width=500 )
+            fig3.update_layout(height=600, width=1000 )
             fig3.update_layout(margin=dict(l=20, r=30))
             fig3.update_layout(title=dict(x=0.5, y=1, xanchor='center', yanchor='top'))
 
@@ -254,11 +244,11 @@ if fl is not None:
             col1.plotly_chart(fig7)
 
             # Visualization 4 - CONTINENT OF STUDY (Pie Chart)
-            fig4 = px.pie(filtered_df, names='CONTINENT OF STUDY', title='Continent of Study Distribution')
-            fig4.update_layout(height=500, width=500)
-            fig4.update_layout(margin=dict(l=20, r=20))
-            fig4.update_layout(title=dict(x=0.5, y=1, xanchor='center', yanchor='top'))
-            col2.plotly_chart(fig4)
+            #fig4 = px.pie(filtered_df, names='CONTINENT OF STUDY', title='Continent of Study Distribution')
+            #fig4.update_layout(height=500, width=500)
+            #fig4.update_layout(margin=dict(l=20, r=20))
+            #fig4.update_layout(title=dict(x=0.5, y=1, xanchor='center', yanchor='top'))
+            #col2.plotly_chart(fig4)
 
             # Visualization 5 - NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR (Pie Chart)
             fig5 = px.pie(filtered_df, names='NATIONALITY/ORIGIN/EXTRACTION OF AUTHOR', title='Nationality Distribution')
@@ -304,9 +294,9 @@ if fl is not None:
         </div>
     """, unsafe_allow_html=True)
         text_data = 'DESCRIPTIVE TERMS/ADJECTIVES/ADJECTIVAL PHRASES (e.g. filthy, dirty, undesirable)'  
-        wordcloud = WordCloud(width=600, height=400, background_color='Black', mode='RGBA').generate(' '.join(filtered_df[text_data].dropna()))
+        wordcloud = WordCloud(width=600, height=400, background_color='white', mode='RGBA').generate(' '.join(filtered_df[text_data].dropna()))
         plt.figure(figsize=(10, 5))
-        plt.imshow(wordcloud, interpolation='bilinear')
+        plt.imshow(wordcloud, interpolation='mitchell')
         plt.axis('off')
         st.set_option('deprecation.showPyplotGlobalUse', False)
         st.pyplot()
@@ -316,7 +306,7 @@ if fl is not None:
 
         col3.subheader('Descriptive studies Word Cloud')
         text_data = 'Descriptive studies( nature of slums(conceptualization), health concerns, housing, water, sanitation, nutrition,land, approaches to slum Upgrading)'  
-        wordcloud = WordCloud(width=400, height=400, background_color='#3498db', mode='RGBA').generate(' '.join(filtered_df[text_data].dropna()))
+        wordcloud = WordCloud(width=400, height=400, background_color='white', mode='RGBA').generate(' '.join(filtered_df[text_data].dropna()))
         plt.figure(figsize=(10, 5))
         plt.imshow(wordcloud, interpolation='bilinear')
         plt.axis('off')
@@ -325,7 +315,7 @@ if fl is not None:
 
         col3.subheader('Prescriptive Studies Word Cloud')
         text_data = 'Prescriptive[inclusivity/tackling marginalisation, slum upgrading/improvement, security improvement,'  
-        wordcloud = WordCloud(width=400, height=400, background_color='#2ecc71', mode='RGBA').generate(' '.join(filtered_df[text_data].dropna()))
+        wordcloud = WordCloud(width=400, height=400, background_color='white', mode='RGBA').generate(' '.join(filtered_df[text_data].dropna()))
         plt.figure(figsize=(10, 5))
         plt.imshow(wordcloud, interpolation='bilinear')
         plt.axis('off')
@@ -334,7 +324,7 @@ if fl is not None:
 
         col4.subheader('Diagnostic Studies Word Cloud')
         text_data = 'Diagnostic (strategies, policy gaps/challenges, tenure concerns, public health concerns, environmental concerns, marginalisation(inclusion, exclusion)]'  
-        wordcloud = WordCloud(width=400, height=400, background_color='#e74c3c', mode='RGBA').generate(' '.join(filtered_df[text_data].dropna()))
+        wordcloud = WordCloud(width=400, height=400, background_color='white', mode='RGBA').generate(' '.join(filtered_df[text_data].dropna()))
         plt.figure(figsize=(10, 5))
         plt.imshow(wordcloud, interpolation='bilinear')
         plt.axis('off')
@@ -343,7 +333,7 @@ if fl is not None:
 
         col4.subheader('Theoretical Studies Word Cloud')
         text_data = 'Theoretical( theories, liberal/neo-liberal theories, colonial/post colonial theories, political economy)'  
-        wordcloud = WordCloud(width=400, height=400, background_color='#f39c12', mode='RGBA').generate(' '.join(filtered_df[text_data].dropna()))
+        wordcloud = WordCloud(width=400, height=400, background_color='white', mode='RGBA').generate(' '.join(filtered_df[text_data].dropna()))
         plt.figure(figsize=(10, 5))
         plt.imshow(wordcloud, interpolation='bilinear')
         plt.axis('off')
